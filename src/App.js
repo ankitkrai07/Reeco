@@ -1,9 +1,16 @@
 import "./App.css";
+import Details from "./Components/Details";
+import Head from "./Components/Head";
+import MiddleSection from "./Components/MiddleSection";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Reeco Assignment- FE</h1>
+      <Navbar />
+      <Head />
+      <Details />
+      <MiddleSection />
     </div>
   );
 }
