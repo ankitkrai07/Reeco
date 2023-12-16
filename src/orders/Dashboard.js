@@ -34,7 +34,7 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, editProduct, updateProductStatus } from "../Store/reducer";
-import { colorCategory, printPage } from "../tools/tracker";
+import { colorCategory } from "../tools/tracker"; // PrintPage() come from here
 import status from "../Data/status";
 import { orderedProducts } from "../Data/Data";
 import ProductEdit from "../components/Edit";
@@ -94,17 +94,12 @@ const OrdersDashboard = () => {
   };
 
   const handleAddProducts = () => {
-    // Calculate the maximum ID only once for the existing products
     const maxId = generateNextId(data);
-
-    // Assuming you want to add products from orderedProducts
     orderedProducts.forEach((product) => {
       const newProduct = {
         ...product,
-        id: maxId + product.id, // Ensure a unique ID for each new product
+        id: maxId + product.id,
       };
-
-      // Dispatch the addProduct action for each product
       dispatch(addProduct(newProduct));
     });
   };
@@ -323,9 +318,9 @@ const OrdersDashboard = () => {
                   variant="outlined"
                   sx={{
                     minWidth: "30vw",
-                    borderRadius: "36px", // Set your desired border radius here
+                    borderRadius: "36px",
                     "& fieldset": {
-                      borderRadius: "36px", // This is to style the border of the TextField
+                      borderRadius: "36px",
                     },
                   }}
                   name="search"
@@ -360,9 +355,9 @@ const OrdersDashboard = () => {
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                     <IconButton
                       color="primary"
-                      onClick={() => {
-                        printPage();
-                      }}
+                      // onClick={() => {
+                      //   printPage();
+                      // }}
                     >
                       <PrintOutlinedIcon />
                     </IconButton>
@@ -410,7 +405,6 @@ const OrdersDashboard = () => {
                             <Box
                               sx={{
                                 display: "flex",
-                                // justifyContent: "space-between",
                                 alignItems: "center",
                               }}
                             >

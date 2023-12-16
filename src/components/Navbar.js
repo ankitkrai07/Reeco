@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
 
@@ -21,9 +21,8 @@ const pages = ["Store", "Orders", "Analytics"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const reversedIconStyle = {
-  transform: 'scaleX(-1)',
+  transform: "scaleX(-1)",
 };
-
 
 function HeaderAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -117,7 +116,6 @@ function HeaderAppBar() {
               textDecoration: "none",
             }}
           >
-            
             Reeco
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -125,7 +123,12 @@ function HeaderAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block",   textTransform: "none", }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  textTransform: "none",
+                }}
               >
                 {page}
               </Button>
@@ -138,14 +141,18 @@ function HeaderAppBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-           
               color="inherit"
-            ><Badge color="success" badgeContent={data.length} anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}>
-             <ShoppingCartOutlinedIcon style={reversedIconStyle} />
-          </Badge>
+            >
+              <Badge
+                color="success"
+                badgeContent={data.length}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+              >
+                <ShoppingCartOutlinedIcon style={reversedIconStyle} />
+              </Badge>
             </IconButton>
             <Tooltip title="Open settings">
               <Button
@@ -155,7 +162,7 @@ function HeaderAppBar() {
                 onClick={handleOpenUserMenu}
                 endIcon={<KeyboardArrowDownIcon />}
                 color="primary"
-                sx={{textTransform:"capitalize",}}
+                sx={{ textTransform: "capitalize" }}
               >
                 Hello, James
               </Button>

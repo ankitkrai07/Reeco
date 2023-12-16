@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import {
   Avatar,
   Box,
@@ -8,10 +9,34 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import status from "../Data/status";
+import { useState } from "react";
+
+const AvatarImage = styled(Avatar)`
+  width: 120px;
+  height: 120px;
+`;
+
+const PriceContainer = styled(Box)`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const StyledTextField = styled(TextField)`
+  max-width: 200px;
+  min-width: 200px;
+`;
+
+const QuantityContainer = styled(Box)`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const StyledChip = styled(Chip)`
+  width: 100%;
+`;
 
 const ProductEdit = (props) => {
   const { data, setEditedProduct } = props;
@@ -57,7 +82,6 @@ const ProductEdit = (props) => {
   };
 
   const handleQuantityDecrement = () => {
-    // Ensure that the quantity does not go below 0
     setQuantity(Math.max(0, quantity - 1));
     totalValue(price, quantity - 1);
     setEditedProduct({
@@ -69,7 +93,6 @@ const ProductEdit = (props) => {
   };
 
   const handleQuantityChange = (event) => {
-    // Ensure that the entered value is not less than 0
     const inputValue = Math.max(0, event.target.value);
     setQuantity(inputValue);
     totalValue(price, inputValue);
@@ -85,48 +108,41 @@ const ProductEdit = (props) => {
     <Box p={4}>
       <Grid container spacing={2} justifyContent={"center"}>
         <Grid item md={3} sm xs>
-          <Avatar
-            alt={data?.name}
-            src={`${data?.image}`}
-            sx={{ width: 120, height: 120 }}
-          />
+          <AvatarImage alt={data?.name} src={`${data?.image}`} />
         </Grid>
         <Grid container spacing={2} md={9} sm xs>
           <Grid item md={3} sm xs>
             price($)
           </Grid>
           <Grid item md={9} sm xs>
-            <Box display={"flex"} justifyContent={"flex-start"}>
-              <TextField
+            <PriceContainer>
+              <StyledTextField
                 type="number"
                 variant="outlined"
                 name="price"
                 id="price"
                 value={price}
                 onChange={handlePriceChange}
-                sx={{ maxWidth: "200px", minWidth: "200px" }}
                 size="small"
               />
               <Typography mx={2}>/6*1LB</Typography>
-            </Box>
+            </PriceContainer>
           </Grid>
           <Grid item md={3} sm xs>
             Quantity
           </Grid>
-
           <Grid item md={9} sm xs>
-            <Box display={"flex"} justifyContent={"flex-start"}>
-              <TextField
+            <QuantityContainer>
+              <StyledTextField
                 type="number"
                 variant="outlined"
                 name="quantity"
                 id="quantity"
                 value={quantity}
                 onChange={handleQuantityChange}
-                sx={{ maxWidth: "200px", minWidth: "200px" }}
                 size="small"
                 inputProps={{
-                  min: 0, // Set the minimum value for the input
+                  min: 0,
                 }}
                 InputProps={{
                   startAdornment: (
@@ -155,7 +171,7 @@ const ProductEdit = (props) => {
                 }}
               />
               <Typography mx={2}> X 6*1LB</Typography>
-            </Box>
+            </QuantityContainer>
           </Grid>
           <Grid item md={3} sm xs>
             Total
@@ -171,16 +187,15 @@ const ProductEdit = (props) => {
         </Grid>
         <Grid item xs={12} container spacing={2} justifyContent={"flex-start"}>
           <Grid item>
-            <Chip
+            <StyledChip
               label="Missing product"
               clickable
               color={selectedChip === "Missing product" ? "primary" : "default"}
               onClick={() => handleChipClick("Missing product")}
-              fullWidth
             />
           </Grid>
           <Grid item>
-            <Chip
+            <StyledChip
               label="Quantity is not the same"
               clickable
               color={
@@ -189,27 +204,24 @@ const ProductEdit = (props) => {
                   : "default"
               }
               onClick={() => handleChipClick("Quantity is not the same")}
-              fullWidth
             />
           </Grid>
           <Grid item>
-            <Chip
+            <StyledChip
               label="Price is not the same"
               clickable
               color={
                 selectedChip === "Price is not the same" ? "primary" : "default"
               }
               onClick={() => handleChipClick("Price is not the same")}
-              fullWidth
             />
           </Grid>
           <Grid item>
-            <Chip
+            <StyledChip
               label="Other"
               clickable
               color={selectedChip === "Other" ? "primary" : "default"}
               onClick={() => handleChipClick("Other")}
-              fullWidth
             />
           </Grid>
         </Grid>
